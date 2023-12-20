@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+.container {
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* styles.css */
+
+.new-page-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.new-page-button:hover {
+  background-color: #0056b3;
+}
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <form method="POST" action="{% url 'add_book' %}"> 
+            {% csrf_token %}
+        <div class="row mt-4">
+            <div class="form-group col-md-12">
+                <label><i style="font-weight: bold;">Book Name</i></label>
+                <input type="text" class="form-control mt-2" name="name" placeholder="Enter name of the Book" required>
+            </div>
+        </div>
+    
+        <div class="row mt-4">
+            <div class="form-group col-md-12">
+                <label><i style="font-weight: bold;">Author Name</i></label>
+                <input type="text" class="form-control mt-2" name="author" placeholder="Enter name of the Author" required>
+            </div>
+        </div>
+    
+        <div class="row mt-4">
+            <div class="form-group col-md-12">
+                <label><i style="font-weight: bold;">ISBN Number</i></label>
+                <input type="number" class="form-control mt-2" name="isbn" placeholder="Enter ISBN number of the book" required>
+            </div>
+        </div>
+    
+        <div class="row mt-4">
+            <div class="form-group col-md-12">
+                <label><i style="font-weight: bold;">Category</i></label>
+                <input type="text" class="form-control mt-2" name="category" placeholder="Enter Category of the book" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary mt-4">Add Book</button>
+    </div>
+    </form>
+    <a href="{% url 'add_book' %}" class="new-page-button">Click main homepage</a>
+    <!-- adm
+</body>
+</html>
