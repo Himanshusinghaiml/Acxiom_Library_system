@@ -1,3 +1,4 @@
+ {% load static %}
  <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -5,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
  </head>
+ 
  <style>
     /* styles.css */
+    body {
+  background: url("{% static 'adminlogin/img/bg1.png' %}");
+}
+
 
 .container {
   width: 50%;
@@ -48,11 +54,7 @@ label {
   background-color: #0056b3;
 }
 /* styles.css */
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
+ 
 
 .navbar {
   background-color: #3498db;
@@ -97,7 +99,7 @@ body {
         <div class="navbar-brand">Library Management System</div>
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a href="{% url 'add' %}">Add Book</a>
+            <a href="{% url 'addbook' %}">Add Book</a>
           </li>
           <li class="nav-item">
             <a href="{% url 'adduser' %}">Add User</a>
@@ -106,10 +108,10 @@ body {
             <a href="#">Add Membership</a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'allbooks' %}">show book</a>
+            <a href="{% url 'showbook' %}">show book</a>
           </li>
           <li class="nav-item">
-            <a href="#">show user registered </a>
+            <a href="{% url 'showuser' %}">show user registered </a>
           </li>
           <li class="nav-item">
             <a href="{% url 'logout' %}"> Logout  </a>
@@ -117,47 +119,9 @@ body {
         </ul>
       </nav>
  
-<!-- <div class="container">
-    <form method="POST" action="{% url 'add_book' %}"> 
-        {% csrf_token %}
-    <div class="row mt-4">
-        <div class="form-group col-md-12">
-            <label><i style="font-weight: bold;">Book Name</i></label>
-            <input type="text" class="form-control mt-2" name="name" placeholder="Enter name of the Book" required>
-        </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="form-group col-md-12">
-            <label><i style="font-weight: bold;">Author Name</i></label>
-            <input type="text" class="form-control mt-2" name="author" placeholder="Enter name of the Author" required>
-        </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="form-group col-md-12">
-            <label><i style="font-weight: bold;">ISBN Number</i></label>
-            <input type="number" class="form-control mt-2" name="isbn" placeholder="Enter ISBN number of the book" required>
-        </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="form-group col-md-12">
-            <label><i style="font-weight: bold;">Category</i></label>
-            <input type="text" class="form-control mt-2" name="category" placeholder="Enter Category of the book" required>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-outline-primary mt-4">Add Book</button>
-</div>
-</form> -->
-<!-- admin_home.html -->
-
-<!-- Your existing HTML code for the form -->
-
- <!-- admin_home.html -->
-
-<!-- Your existing HTML code for the form -->
-
+ 
+ 
+<img src="{% static 'img/bg2.jpeg' %}" alt="photo" width="100%">
  
 <script type="text/javascript"> 
     window.history.forward(); 

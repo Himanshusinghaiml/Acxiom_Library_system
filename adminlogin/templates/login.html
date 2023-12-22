@@ -19,6 +19,32 @@
   <link rel="stylesheet" href="styles.css">
   <title>Library Management System - Login</title>
   <style>
+
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        div {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        p {
+            margin-top: 10px;
+            color: #555;
+        }
     body {
   font-family: Arial, sans-serif;
   display: flex;
@@ -74,6 +100,8 @@ button:hover {
   </style>
 </head>
 <body>
+   
+
   <div class="login-container">
     <form id="loginForm" method="post" action="{% url 'login' %}">
         {% csrf_token %}
@@ -91,7 +119,10 @@ button:hover {
       </div>
     </form>
   </div>
-
+  <div> <h3> please type in username field :- aiml <br>
+    please type in password field : aiml</h3><br>
+    <p>beacuse for admin username and password have to set into database </p> </div>
+   
   <script src="script.js"></script>
 </body>
 </html>

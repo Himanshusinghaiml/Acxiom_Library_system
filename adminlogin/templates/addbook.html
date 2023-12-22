@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+     
+  .messages {
+    max-width: 500px; /* Set your desired maximum width */
+    margin: 0 auto;  /* Center the messages horizontally */
+    padding: 10px;   /* Add padding for better visual appearance */
+    border: 1px solid #ccc; /* Add a border for better separation */
+    background-color: greenyellow; /* Add a background color */
+    list-style: none; /* Remove default list styles */
+  }
+
+  /* Style for success messages */
+  .messages .success {
+    color: green;
+  }
+
+  /* Style for error messages */
+  .messages .error {
+    color: red;
+  }
+
+  /* Style for info messages */
+  .messages .info {
+    color: blue;
+  }
+
+ 
+
 
 .container {
   width: 50%;
@@ -63,14 +91,24 @@ label {
 .new-page-button:hover {
   background-color: #0056b3;
 }
-
+.c{
+  margin-left: 380px;
+}
 
     </style>
 </head>
 <body>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+<a href="{% url 'adminhomepage' %}" class="new-page-button">Click main homepage</a>
     
     <div class="container">
-        <form method="POST" action="{% url 'add_book' %}"> 
+        <form method="POST" action="{% url 'addbook' %}"> 
             {% csrf_token %}
         <div class="row mt-4">
             <div class="form-group col-md-12">
@@ -88,7 +126,7 @@ label {
     
         <div class="row mt-4">
             <div class="form-group col-md-12">
-                <label><i style="font-weight: bold;">ISBN Number</i></label>
+                <label><i style="font-weight: bold;">Book Number</i></label>
                 <input type="number" class="form-control mt-2" name="isbn" placeholder="Enter ISBN number of the book" required>
             </div>
         </div>
@@ -102,7 +140,8 @@ label {
         <button type="submit" class="btn btn-outline-primary mt-4">Add Book</button>
     </div>
     </form>
-    <a href="{% url 'add_book' %}" class="new-page-button">Click main homepage</a>
+    <img src="{% static 'img/bg.webp' %}" alt="photo" width="50%" class="c">
+    
     <!-- adm
 </body>
 </html>

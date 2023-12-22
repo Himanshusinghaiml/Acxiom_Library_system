@@ -5,6 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <style>
+    .messages {
+    max-width: 500px; /* Set your desired maximum width */
+    margin: 0 auto;  /* Center the messages horizontally */
+    padding: 10px;   /* Add padding for better visual appearance */
+    border: 1px solid #ccc; /* Add a border for better separation */
+    background-color: greenyellow; /* Add a background color */
+    list-style: none; /* Remove default list styles */
+  }
+
+  /* Style for success messages */
+  .messages .success {
+    color: green;
+  }
+
+  /* Style for error messages */
+  .messages .error {
+    color: red;
+  }
+
+  /* Style for info messages */
+  .messages .info {
+    color: blue;
+  }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -59,9 +83,31 @@
     button:hover {
       background-color: #0056b3;
     }
+    .new-page-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.new-page-button:hover {
+  background-color: #0056b3;
+}
+
   </style>
 </head>
 <body>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 
   <div class="login-container">
     <h2>Create userid and password for new users </h2>
@@ -80,6 +126,6 @@
       <button type="submit">Login</button>
     </form>
   </div>
-
+  <a href="{% url 'adminhomepage' %}" class="new-page-button">Click main homepage</a>
 </body>
 </html>

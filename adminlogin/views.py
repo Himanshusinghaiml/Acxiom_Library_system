@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from .models import Book
 from django.contrib.auth import logout
+from django.contrib import messages
 # Create your views here.
 def adminlogin(req):
     return render(req,'adminlogin.html')
@@ -21,12 +22,12 @@ class CustomLoginView(LoginView):
     
     def get_success_url(self):
         # Customize the URL where the user is redirected after a successful login
-        return reverse_lazy('add_book') 
+        return reverse_lazy('adminhomepage') 
 
 def adminhomepage(req):
     return render(req,'adminhomepage.html')
    
-def add_book(request):
+def addbook(request):
     if request.method == "POST":
         name = request.POST['name']
         author = request.POST['author']
@@ -35,13 +36,15 @@ def add_book(request):
 
         books = Book.objects.create(name=name, author=author, isbn=isbn, category=category)
         books.save()
-        alert = True
-         
-    return render(request, "adminhomepage.html")
+        messages.success(request, 'New Book added successfully.')
+
+        # Redirect to the same page to display the message
+        return redirect('addbook')  #
+        
+    return render(request, "addbook.html")
 
  
-def add(req):
-    return render(req,'addbook1.html') 
+  
 
 
 def adduser(req):
@@ -55,22 +58,19 @@ def create_new_user(request):
         password = request.POST['password']
 
         # Create a new user
-        CreateNewUser.objects.create(username=username, password=password)
-
-        # Redirect to a success page or any other page as needed
-        return redirect('add_book')
-
-    return render(request, 'create_new_user.html')
+        savedata= CreateNewUser.objects.create(username=username, password=password)
+        savedata.save()
+        total_users = CreateNewUser.objects.count()
+        return render(request, 'adduser.html', {'total_users': total_users, 'shows': savedata})
  
 def logout1(request):
     logout(request)
     # Redirect to the homepage or any other desired page after logout
     return redirect('homepage')
+def showuser(req):
+    return render(req,'showuser.html')
 
-def showbook(req):
-    return render(req,'showbook.html')
-
-def all_books(request):
+def showbook(request):
     # Retrieve all books from the database
     books = Book.objects.all()
 
